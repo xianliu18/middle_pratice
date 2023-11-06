@@ -31,13 +31,15 @@ public class Request {
         for (int j = 0; j < i; j++) {
             request.append((char)buffer[j]);
         }
-        System.out.println(request.toString());
+        System.out.println("request 详细内容：" + request.toString());
         uri = parseUri(request.toString());
+        System.out.println("路径 uri: " + uri);
     }
 
     private String parseUri(String requestString) {
         int index1, index2;
         index1 = requestString.indexOf(' ');
+        System.out.println("index1 的值为：" + requestString.substring(0, index1));
         if (index1 != -1) {
             index2 = requestString.indexOf(' ', index1+1);
             if (index2 > index1) {
