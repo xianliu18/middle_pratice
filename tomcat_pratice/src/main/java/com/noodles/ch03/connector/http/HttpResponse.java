@@ -477,11 +477,6 @@ public class HttpResponse implements HttpServletResponse {
         return writer;
     }
 
-    @Override
-    public void setCharacterEncoding(String s) {
-
-    }
-
     /**
      * Has the output of this response already been committed?
      */
@@ -586,23 +581,4 @@ public class HttpResponse implements HttpServletResponse {
     public void setStatus(int sc, String message) {
     }
 
-    @Override
-    public int getStatus() {
-        return 0;
-    }
-
-    @Override
-    public String getHeader(String s) {
-        return null;
-    }
-
-    @Override
-    public Collection<String> getHeaders(String s) {
-        return null;
-    }
-
-    @Override
-    public Collection<String> getHeaderNames() {
-        return null;
-    }
 }

@@ -68,11 +68,6 @@ public class HttpResponseFacade implements HttpServletResponse {
         return response.getCharacterEncoding();
     }
 
-    @Override
-    public String getContentType() {
-        return null;
-    }
-
     public Locale getLocale() {
         return response.getLocale();
     }
@@ -85,10 +80,6 @@ public class HttpResponseFacade implements HttpServletResponse {
         return response.getWriter();
     }
 
-    @Override
-    public void setCharacterEncoding(String s) {
-
-    }
 
     public boolean isCommitted() {
         return response.isCommitted();
@@ -150,23 +141,4 @@ public class HttpResponseFacade implements HttpServletResponse {
         response.setStatus(sc, message);
     }
 
-    @Override
-    public int getStatus() {
-        return 0;
-    }
-
-    @Override
-    public String getHeader(String s) {
-        return null;
-    }
-
-    @Override
-    public Collection<String> getHeaders(String s) {
-        return null;
-    }
-
-    @Override
-    public Collection<String> getHeaderNames() {
-        return null;
-    }
 }
