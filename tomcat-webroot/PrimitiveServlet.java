@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * @Description
+ * @Description  编译命令：javac -encoding UTF-8 -classpath ./servlet-api-2.4.jar .\PrimitiveServlet.java
  * @Author liuxian
  * @Date 2023/11/6 11:51
  **/
