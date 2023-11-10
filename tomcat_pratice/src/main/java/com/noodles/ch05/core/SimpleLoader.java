@@ -2,6 +2,9 @@ package com.noodles.ch05.core;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.DefaultContext;
+import org.apache.catalina.Lifecycle;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.Loader;
 
 import java.beans.PropertyChangeListener;
@@ -17,7 +20,7 @@ import java.net.URLStreamHandler;
  * @Author liuxian
  * @Date 2023/11/9 15:37
  **/
-public class SimpleLoader implements Loader {
+public class SimpleLoader implements Loader, Lifecycle {
 
     public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "tomcat-webroot";
 
@@ -109,6 +112,31 @@ public class SimpleLoader implements Loader {
 
     @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
+
+    }
+
+    @Override
+    public void addLifecycleListener(LifecycleListener listener) {
+
+    }
+
+    @Override
+    public LifecycleListener[] findLifecycleListeners() {
+        return new LifecycleListener[0];
+    }
+
+    @Override
+    public void removeLifecycleListener(LifecycleListener listener) {
+
+    }
+
+    @Override
+    public void start() throws LifecycleException {
+        System.out.println("starting SimpleLoader~~~~");
+    }
+
+    @Override
+    public void stop() throws LifecycleException {
 
     }
 }
