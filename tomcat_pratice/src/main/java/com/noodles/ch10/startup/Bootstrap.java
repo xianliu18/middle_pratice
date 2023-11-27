@@ -2,17 +2,21 @@ package com.noodles.ch10.startup;
 
 import com.noodles.ch10.core.SimpleContextConfig;
 import com.noodles.ch10.core.SimpleWrapper;
+import com.noodles.ch10.realm.SimpleRealm;
 import org.apache.catalina.Connector;
 import org.apache.catalina.Context;
 import org.apache.catalina.Lifecycle;
 import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.Loader;
 import org.apache.catalina.Manager;
+import org.apache.catalina.Realm;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.http.HttpConnector;
 import org.apache.catalina.core.StandardContext;
+import org.apache.catalina.deploy.LoginConfig;
+import org.apache.catalina.deploy.SecurityCollection;
+import org.apache.catalina.deploy.SecurityConstraint;
 import org.apache.catalina.loader.WebappLoader;
-import org.apache.catalina.session.StandardManager;
 
 import java.io.File;
 
@@ -50,7 +54,22 @@ public class Bootstrap {
         context.addServletMapping("/Primitive", "Primitive");
         context.addServletMapping("/Modern", "Modern");
 
+        SecurityCollection securityCollection = new SecurityCollection();
+        securityCollection.addPattern("/");
+        securityCollection.addMethod("GET");
 
+        SecurityConstraint constraint = new SecurityConstraint();
+        constraint.addCollection(securityCollection);
+        constraint.addAuthRole("manager");
+        LoginConfig loginConfig = new LoginConfig();
+        loginConfig.setRealmName("Simple Realm");
+
+        Realm realm = new SimpleRealm();
+        context.setRealm(realm);
+        context.addConstraint(constraint);
+        context.setLoginConfig(loginConfig);
+
+        connector.setContainer(context);
 
         try {
             connector.initialize();
