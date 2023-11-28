@@ -24,7 +24,7 @@ public class SimpleContextConfig implements LifecycleListener {
     @Override
     public void lifecycleEvent(LifecycleEvent lifecycleEvent) {
         if (Lifecycle.START_EVENT.equals(lifecycleEvent.getType())) {
-            Context context = (Context)lifecycleEvent.getLifecycle();
+            context = (Context)lifecycleEvent.getLifecycle();
             authenticatorConfig();
             context.setConfigured(true);
         }
