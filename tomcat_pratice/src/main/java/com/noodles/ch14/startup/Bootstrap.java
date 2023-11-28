@@ -1,4 +1,4 @@
-package com.noodles.ch13.startup;
+package com.noodles.ch14.startup;
 
 import com.noodles.ch13.core.SimpleContextConfig;
 import org.apache.catalina.Connector;
@@ -6,14 +6,18 @@ import org.apache.catalina.Context;
 import org.apache.catalina.Engine;
 import org.apache.catalina.Host;
 import org.apache.catalina.Lifecycle;
+import org.apache.catalina.LifecycleException;
 import org.apache.catalina.LifecycleListener;
 import org.apache.catalina.Loader;
 import org.apache.catalina.Server;
+import org.apache.catalina.Service;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.connector.http.HttpConnector;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.core.StandardEngine;
 import org.apache.catalina.core.StandardHost;
+import org.apache.catalina.core.StandardServer;
+import org.apache.catalina.core.StandardService;
 import org.apache.catalina.core.StandardWrapper;
 import org.apache.catalina.loader.WebappLoader;
 
@@ -24,7 +28,7 @@ import java.io.File;
  * @Author liuxian
  * @Date 2023/11/28 11:41
  **/
-public class Bootstrap2 {
+public class Bootstrap {
 
     public static final String WEB_ROOT = System.getProperty("user.dir") + File.separator + "tomcat-webroot";
 
@@ -63,16 +67,33 @@ public class Bootstrap2 {
         engine.addChild(host);
         engine.setDefaultHost("localhost");
 
-        connector.setContainer(engine);
-        try {
-            connector.initialize();
-            ((Lifecycle)connector).start();
-            ((Lifecycle)engine).start();
+        Service service = new StandardService();
+        service.setName("Stand-alone Service");
+        Server server = new StandardServer();
+        server.addService(service);
+        service.addConnector(connector);
 
-            System.in.read();
-            ((Lifecycle)engine).stop();
-        } catch (Exception e) {
-            e.printStackTrace();
+        service.setContainer(engine);
+
+        // start the new server
+        if (server instanceof Lifecycle) {
+            try {
+                server.initialize();
+                ((Lifecycle)server).start();
+                server.await();
+
+            } catch (LifecycleException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Shut down the server
+        if (server instanceof Lifecycle) {
+            try {
+                ((Lifecycle)server).stop();
+            } catch (LifecycleException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
