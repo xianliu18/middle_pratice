@@ -42,6 +42,7 @@ public class SimpleWrapperValve implements Valve, Contained {
 
         // Allocate a servlet instance to process this request
         try {
+            System.out.println("step6 wrapper.allocate() ....");
             servlet = wrapper.allocate();
             if (hres != null && hreq != null) {
                 servlet.service(hreq, hres);

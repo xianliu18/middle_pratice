@@ -400,6 +400,7 @@ public class SimpleWrapper implements Wrapper, Pipeline, Lifecycle {
 
     @Override
     public void invoke(Request request, Response response) throws IOException, ServletException {
+//        System.out.println("step5 wrapper --> invoke");
         pipeline.invoke(request, response);
     }
 

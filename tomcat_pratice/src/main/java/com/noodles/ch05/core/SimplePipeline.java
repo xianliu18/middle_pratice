@@ -114,9 +114,12 @@ public class SimplePipeline implements Pipeline, Lifecycle {
             int subscript = stage;
             stage = stage + 1;
 
+            System.out.println("step2 pipeline --> invoke stage " + stage);
+
             if(subscript < valves.length) {
                 valves[subscript].invoke(request, response, this);
             } else if ((subscript == valves.length) && (basic != null)) {
+                System.out.println("step3 pipeline --> invoke basic, containerName: " + container.getName());
                 basic.invoke(request, response, this);
             } else {
                 throw new ServletException("No value");

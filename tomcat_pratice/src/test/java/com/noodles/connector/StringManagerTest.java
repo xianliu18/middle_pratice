@@ -14,7 +14,8 @@ public class StringManagerTest {
     protected StringManager sm = StringManager.getManager(Constants.Package);
 
     /**
-     * target 目录，com.noodles.ch03.connector.http 中需要存在 LocalStrings.properties 文件
+     * **** 需要检查 target 目录 ****
+     *    com.noodles.ch03.connector.http 中需要存在 LocalStrings.properties 文件
      */
     @Test
     public void testStringManager() {

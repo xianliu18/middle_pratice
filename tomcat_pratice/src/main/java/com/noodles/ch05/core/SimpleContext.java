@@ -728,7 +728,7 @@ public class SimpleContext implements Context, Pipeline, Lifecycle {
 
     @Override
     public String getName() {
-        return null;
+        return "Simple Context";
     }
 
     @Override
@@ -873,6 +873,7 @@ public class SimpleContext implements Context, Pipeline, Lifecycle {
 
     @Override
     public void invoke(Request request, Response response) throws IOException, ServletException {
+        System.out.println("Step1 SimpleContext-->invoke");
         pipeline.invoke(request, response);
     }
 

@@ -58,6 +58,7 @@ public class SimpleContextValve implements Valve, Contained {
         Wrapper wrapper = null;
         try {
             wrapper = (Wrapper)context.map(request, true);
+            System.out.println("step4 准备映射到具体的 wrapper " + relativeURI);
         } catch (IllegalArgumentException e) {
             badRequest(requestURI, (HttpServletResponse)response.getResponse());
             return;

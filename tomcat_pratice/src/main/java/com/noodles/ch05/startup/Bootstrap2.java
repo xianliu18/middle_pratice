@@ -36,11 +36,11 @@ public class Bootstrap2 {
         context.addChild(wrapper1);
         context.addChild(wrapper2);
 
-//        Valve valve1 = new HeaderLoggerValue();
-//        Valve valve2 = new ClientIPLoggerValue();
-//
-//        ((Pipeline)context).addValve(valve1);
-//        ((Pipeline)context).addValve(valve2);
+        Valve valve1 = new HeaderLoggerValue();
+        Valve valve2 = new ClientIPLoggerValue();
+
+        ((Pipeline)context).addValve(valve1);
+        ((Pipeline)context).addValve(valve2);
 
         Mapper mapper = new SimpleContextMapper();
         mapper.setProtocol("http");
