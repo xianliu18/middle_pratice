@@ -12,6 +12,7 @@
     <module>netty_pratice</module>
       <module>tomcat_pratice</module>
     <module>nginx_pratice</module>
+    <module>flink_practice</module>
   </modules>
 
   <properties>
